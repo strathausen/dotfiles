@@ -1,0 +1,71 @@
+snippet #
+	#{${1:expression}}
+snippet c
+	console.log ${1:var}
+snippet ce
+	console.error ${1:var}
+snippet r
+	${1:var} = require '${2:$1}'
+snippet cl
+	class ${1:classname}
+	  module.exports = ${2:$1}
+	  constructor: ({ ${3:vars} }) ->
+	    ${4:body}
+snippet ro
+	app.${1:method} '/${2:path}', (a...) => @${3:method} a...
+snippet mi
+	${1:middleware}: (req, res, next) ->
+	  ${2:body}
+	  do next
+snippet me
+	${1:method}: (req, res) ->
+	  ${2:body}
+snippet test
+	vows     = require 'vows'
+	assert   = require 'assert'
+	root     = '../../../../'
+	mongoose = new require root + 'tests/FakeMongoose.coffee'
+	app      = new require root + 'tests/FakeApp.coffee'
+	
+	${1:subject} = require '${1:subject}'
+	
+	suite = vows.describe '${2:description}'
+	suite.export module
+	
+	suite.addBatch
+	  '${3:firstbatch}':
+	    topic: ->
+	      ${4:thethingtotest}
+	
+	    '${5:testonthetopic}': (${6:args}) ->
+	      ${7:theactualtest}
+	
+	unless module.parent
+	  do suite.run
+snippet model
+	###
+
+	MongoDB Schema for ${1:name}
+
+	###
+	module.exports = (mongoose) ->
+	  schema = new mongoose.Schema
+	    ${2:schema}
+
+	  mongoose.model '${1:$1}', schema
+
+	  mongoose.model '${1:$1}'
+
+snippet co
+	###
+
+	${1:name}
+
+	@author ${2:author}
+
+	###
+	
+	class ${3:$1}
+	  module.exports = ${4:$1}
+	  constructor: ({ app, mongoose }) ->
+	    ${5}
